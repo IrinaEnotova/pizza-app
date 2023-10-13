@@ -2,16 +2,30 @@
   padding: 8px 30px;
   border-radius: 6px;
   border: none;
-  font-size: 16px;
+  border-radius: 29px;
+  color: var(--white-color);
   font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
   cursor: pointer;
   transition: background 0.25s;
 }
 
+.small {
+  font-size: 16px;
+  padding: 10px 25px;
+}
+
+.big {
+  font-size: 15px;
+  text-transform: uppercase;
+  padding: 20px 60px;
+}
+
 .button:hover {
-  background: #646cff;
+  background: var(--primary-hover-color);
 }
 
 .accent {
-  background: #312eb5;
+  background: var(--primary-color);
 }
