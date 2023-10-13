@@ -1,3 +1,7 @@
 export const Error = () => {
-  return <>Error</>;
+  return (
+    <>
+      <h1>404</h1>
+    </>
+  );
 };
