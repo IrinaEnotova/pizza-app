@@ -1,4 +1,4 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import styles from "./Layout.module.css";
 import Button from "../../components/Button/Button";
 import { useEffect } from "react";
@@ -20,31 +20,35 @@ export const Layout = () => {
           <div className={styles["email"]}>IrinaEnotova@example.com</div>
         </div>
         <div className={styles["menu"]}>
-          <Link
+          <NavLink
             to="/"
-            className={classNames(styles["link"], {
-              [styles.active]: location.pathname === "/",
-            })}
+            className={({ isActive }) =>
+              classNames(styles["link"], {
+                [styles.active]: isActive,
+              })
+            }
           >
             <img src="./menu-icon.svg" alt="Menu icon" />
             Menu
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/cart"
-            className={classNames(styles["link"], {
-              [styles.active]: location.pathname === "/cart",
-            })}
+            className={({ isActive }) =>
+              classNames(styles["link"], {
+                [styles.active]: isActive,
+              })
+            }
           >
             <img src="./cart-icon.svg" alt="Cart icon" />
             Cart
-          </Link>
+          </NavLink>
         </div>
         <Button className={styles["logout"]}>
           <img src="./logout.svg" alt="Logout icon" />
           Logout
         </Button>
       </div>
-      <div>
+      <div className={styles.content}>
         <Outlet />
       </div>
     </div>
