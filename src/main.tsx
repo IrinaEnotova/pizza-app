@@ -9,8 +9,10 @@ import { ProductPage } from "./pages/Product/Product";
 import { PREFIX } from "./helpers/API";
 import axios from "axios";
 import { Product } from "./interfaces/product.interface";
+import { AuthLayout } from "./layout/Auth/AuthLayout";
+import { Login } from "./pages/Login/Login";
+import { Register } from "./pages/Register/Register";
 
-// удалим сверху импорт и импортируем компонент через lazy
 const Menu = lazy(() => import("./pages/Menu/Menu"));
 
 const router = createBrowserRouter([
@@ -38,9 +40,21 @@ const router = createBrowserRouter([
           return defer({
             data: axios.get<Product>(`${PREFIX}/products/${params.id}`).then((data) => data),
           });
-          // const { data } = await axios.get<Product>(`${PREFIX}/products/${params.id}`);
-          // return data;
         },
+      },
+    ],
+  },
+  {
+    path: "/auth",
+    element: <AuthLayout></AuthLayout>,
+    children: [
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "register",
+        element: <Register />,
       },
     ],
   },
