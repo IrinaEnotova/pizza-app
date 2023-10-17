@@ -1,7 +1,6 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { Menu } from "./pages/Menu/Menu";
+import { RouterProvider, createBrowserRouter, defer } from "react-router-dom";
 import { Cart } from "./pages/Cart/Cart";
 import { Error } from "./pages/Error/Error";
 import "./index.css";
@@ -11,6 +10,9 @@ import { PREFIX } from "./helpers/API";
 import axios from "axios";
 import { Product } from "./interfaces/product.interface";
 
+// удалим сверху импорт и импортируем компонент через lazy
+const Menu = lazy(() => import("./pages/Menu/Menu"));
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,7 +20,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Menu />,
+        element: (
+          <Suspense fallback={<>Loading...</>}>
+            <Menu />
+          </Suspense>
+        ),
       },
       {
         path: "/cart",
@@ -27,9 +33,13 @@ const router = createBrowserRouter([
       {
         path: "/product/:id",
         element: <ProductPage />,
+        errorElement: <>ERROR!</>,
         loader: async ({ params }) => {
-          const { data } = await axios.get<Product>(`${PREFIX}/products/${params.id}`);
-          return data;
+          return defer({
+            data: axios.get<Product>(`${PREFIX}/products/${params.id}`).then((data) => data),
+          });
+          // const { data } = await axios.get<Product>(`${PREFIX}/products/${params.id}`);
+          // return data;
         },
       },
     ],
