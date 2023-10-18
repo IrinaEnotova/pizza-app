@@ -10,6 +10,12 @@
   flex-direction: column;
 }
 
+.inner-sidebar {
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .user {
   margin-bottom: 46px;
 }
