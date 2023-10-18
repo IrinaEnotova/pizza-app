@@ -11,7 +11,7 @@ export const ProductCard = ({ id, title, description, image, price, rating }: Pr
 
   const add = (event: MouseEvent) => {
     event.preventDefault();
-    dispatch(cartActions.add(id));
+    dispatch(cartActions.increase(id));
   };
 
   return (
