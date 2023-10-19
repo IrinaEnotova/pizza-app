@@ -99,8 +99,8 @@ export const Cart = () => {
       )}
       {items.length === 0 && (
         <div className={styles["empty"]}>
-          <div>Your cart is empty!</div>
-          <Button onClick={() => navigate("/")}>Go to pizza!</Button>
+          <div>😔&nbsp;Your cart is empty!</div>
+          <Button onClick={() => navigate("/")}>Go to pizza!&nbsp;😉</Button>
         </div>
       )}
     </>
