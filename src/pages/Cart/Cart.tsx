@@ -66,33 +66,43 @@ export const Cart = () => {
         if (!product) return;
         return <CartItem key={product.id} count={i.count} {...product} />;
       })}
-      <div className={styles["line"]}>
-        <div className={styles["text"]}>Total</div>
-        <div className={styles["price"]}>
-          {total}&nbsp;<span>$</span>
+      {items.length > 0 && (
+        <>
+          <div className={styles["line"]}>
+            <div className={styles["text"]}>Total</div>
+            <div className={styles["price"]}>
+              {total}&nbsp;<span>$</span>
+            </div>
+          </div>
+          <hr className={styles["hr"]} />
+          <div className={styles["line"]}>
+            <div className={styles["text"]}>Delivery</div>
+            <div className={styles["price"]}>
+              {DELIVERY_FEE}&nbsp;<span>$</span>
+            </div>
+          </div>
+          <hr className={styles["hr"]} />
+          <div className={styles["line"]}>
+            <div className={styles["text"]}>
+              Total <span className={styles["total-count"]}>({items.length})</span>
+            </div>
+            <div className={styles["price"]}>
+              {total + DELIVERY_FEE}&nbsp;<span>$</span>
+            </div>
+          </div>
+          <div className={styles["checkout"]}>
+            <Button appearance="big" onClick={checkout}>
+              Checkout
+            </Button>
+          </div>
+        </>
+      )}
+      {items.length === 0 && (
+        <div className={styles["empty"]}>
+          <div>Your cart is empty!</div>
+          <Button onClick={() => navigate("/")}>Go to pizza!</Button>
         </div>
-      </div>
-      <hr className={styles["hr"]} />
-      <div className={styles["line"]}>
-        <div className={styles["text"]}>Delivery</div>
-        <div className={styles["price"]}>
-          {DELIVERY_FEE}&nbsp;<span>$</span>
-        </div>
-      </div>
-      <hr className={styles["hr"]} />
-      <div className={styles["line"]}>
-        <div className={styles["text"]}>
-          Total <span className={styles["total-count"]}>({items.length})</span>
-        </div>
-        <div className={styles["price"]}>
-          {total + DELIVERY_FEE}&nbsp;<span>$</span>
-        </div>
-      </div>
-      <div className={styles["checkout"]}>
-        <Button appearance="big" onClick={checkout}>
-          Checkout
-        </Button>
-      </div>
+      )}
     </>
   );
 };
