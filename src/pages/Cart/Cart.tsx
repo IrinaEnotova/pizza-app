@@ -71,14 +71,14 @@ export const Cart = () => {
           <div className={styles["line"]}>
             <div className={styles["text"]}>Total</div>
             <div className={styles["price"]}>
-              {total}&nbsp;<span>$</span>
+              {total / 10}&nbsp;<span>$</span>
             </div>
           </div>
           <hr className={styles["hr"]} />
           <div className={styles["line"]}>
             <div className={styles["text"]}>Delivery</div>
             <div className={styles["price"]}>
-              {DELIVERY_FEE}&nbsp;<span>$</span>
+              {DELIVERY_FEE / 10}&nbsp;<span>$</span>
             </div>
           </div>
           <hr className={styles["hr"]} />
@@ -87,7 +87,7 @@ export const Cart = () => {
               Total <span className={styles["total-count"]}>({items.length})</span>
             </div>
             <div className={styles["price"]}>
-              {total + DELIVERY_FEE}&nbsp;<span>$</span>
+              {(total + DELIVERY_FEE) / 10}&nbsp;<span>$</span>
             </div>
           </div>
           <div className={styles["checkout"]}>

@@ -43,7 +43,7 @@ export const ProductPage = () => {
                   <div className={styles.line}>
                     <div className={styles["field-name"]}>Price</div>
                     <div className={styles.price}>
-                      {data.price}&nbsp;<span className={styles.currency}>$</span>
+                      {data.price / 10}&nbsp;<span className={styles.currency}>$</span>
                     </div>
                   </div>
                   <hr className={styles.hr} />
@@ -58,8 +58,8 @@ export const ProductPage = () => {
                   <div>
                     <div className={styles["field-name"]}>Ingridients</div>
                     <ul className={styles.ingridients}>
-                      {data.ingredients.map((ingridient) => (
-                        <li>{ingridient}</li>
+                      {data.ingredients.map((ingridient, idx) => (
+                        <li key={`ingridient-${idx}`}>{ingridient}</li>
                       ))}
                     </ul>
                   </div>
